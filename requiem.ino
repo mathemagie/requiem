@@ -10,6 +10,11 @@
 int solPin[] = {2,3,4,5,6,7,8,9,10,11,12,13};	// Define solenoid output pins
 int chord[12];	// Array used to define the chord played by the function pulseChord()
 
+String stringOne = "carmen de la zou";
+char charBuf[50];
+int delayTime;
+
+
 
 
 
@@ -26,19 +31,170 @@ void setup()
 
 void loop()
 {
-	for(int i=0; i<3; i++)
-	{
+  
+    stringOne.toCharArray(charBuf, 50) ;
+    Serial.println(stringOne);
+    for (int i = 0; i < 14; i++) {
+       Serial.println(charBuf[i]);
+       go(charBuf[i]);
+       delay(300);
+    }
+    Serial.println();
+	//for(int i=0; i<3; i++)
+	//{
 		//pulseOne(i);
-		delay(1000);
-                Serial.println("moteur " + String(i) );
-	}
+		//delay(1000);
+                //Serial.println("moteur " + String(i) );
+	//}
 
 	//setChord(1,0,1,0,1,0,1,0,1,0,1,0);
 	//pulseChord();
         //delay(200);
 	//setChord(0,1,0,1,0,1,0,1,0,1,0,1);
 	//pulseChord();
-	//delay(200);
+    delay(2000);
+}
+
+void go(char c)                              // go function
+{
+   setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+  switch(c)                                  // Switch to code based on c
+  {
+    case 'a':
+     setChord(1,0,0,0,0,0,0,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("a trouve");
+      break;
+    case 'b':
+     setChord(0,1,0,0,0,0,0,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("b trouve");
+      break;
+    case 'c':
+     setChord(0,0,1,0,0,0,0,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("c trouve");
+      break;
+    case 'd':
+     setChord(0,0,0,1,0,0,0,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("d trouve");
+      break;
+    case 'e':
+     setChord(0,0,0,0,1,0,0,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("e trouve");
+      break;
+    case 'f':
+     setChord(0,0,0,0,0,1,0,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("f trouve");
+      break;
+    case 'g':
+     setChord(0,0,0,0,0,0,1,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("g trouve");
+      break;
+    case 'h':
+     setChord(0,0,0,0,0,0,0,1,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("h trouve");
+      break;
+    case 'i':
+     setChord(0,0,0,0,0,0,0,0,1,0,0,0);
+     delayTime = 50; 
+      Serial.println("i trouve");
+      break;
+    case 'j':
+     setChord(0,0,0,0,0,0,0,0,0,1,0,0);
+     delayTime = 50; 
+      Serial.println("j trouve");
+      break;
+    case 'k':
+     setChord(0,0,0,0,0,0,0,0,0,0,1,0);
+     delayTime = 50; 
+      Serial.println("k trouve");
+      break;
+    case 'l':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,1);
+     delayTime = 50; 
+      Serial.println("l trouve");
+      break;
+    case 'm':
+      setChord(1,0,0,0,0,0,1,0,0,0,0,0);
+     delayTime = 50; 
+      Serial.println("m trouve");
+      break;
+    case 'n':
+     setChord(0,0,1,0,0,0,0,0,0,1,0,0);
+      delayTime = 50; 
+      Serial.println("n trouve");
+      break;
+    case 'o':
+     setChord(0,0,0,1,0,0,0,0,0,0,1,0);
+      delayTime = 50; 
+      Serial.println("o trouve");
+      break;
+    case 'p':
+     setChord(0,0,0,0,1,0,0,0,0,0,0,1);
+      delayTime = 50; 
+      Serial.println("p trouve");
+      break;
+     case 'q':
+     setChord(1,0,0,0,0,1,0,0,0,0,0,0);
+      delayTime = 50; 
+      Serial.println("q trouve");
+      break;
+    case 'r':
+     setChord(0,1,0,0,0,0,1,0,0,0,0,0);
+      delayTime = 50; 
+      Serial.println("r trouve");
+      break;
+    case 's':
+     setChord(0,0,1,0,0,0,0,1,0,0,0,0);
+      delayTime = 50; 
+      Serial.println("s trouve");
+      break;
+    case 't':
+     setChord(0,0,0,1,0,0,0,0,1,0,0,0);
+      delayTime = 50; 
+      Serial.println("t trouve");
+      break;
+     case 'u':
+      setChord(0,0,0,0,1,0,0,0,0,1,0,0);
+      delayTime = 50; 
+      Serial.println("u trouve");
+      break;
+     case 'v':
+      setChord(0,0,0,0,0,1,0,0,0,0,1,0);
+      delayTime = 50; 
+      Serial.println("v trouve");
+      break;
+     case 'w':
+      setChord(0,0,0,0,0,1,0,0,0,0,1,0);
+      delayTime = 50; 
+      Serial.println("w trouve");
+      break;
+     case 'x':
+      setChord(0,0,0,0,0,1,0,0,0,0,1,0);
+      delayTime = 50; 
+      Serial.println("x trouve");
+      break;
+     case 'y':
+      setChord(0,0,0,0,0,0,0,0,0,0,1,0);
+      delayTime = 50; 
+      Serial.println("y trouve");
+      break;
+     case 'z':
+      setChord(0,0,0,0,0,1,0,0,0,0,1,0);
+      delayTime = 50; 
+      Serial.println("z trouve");
+      break;
+  }
+  pulseChord();   // Joue l'accord de la lettre
+   delay(delayTime); 
+ 
+    
 }
 
 
