@@ -1,3 +1,6 @@
+#include <Bridge.h>
+#include <HttpClient.h>
+
 ///////////////////////
 //
 // Defines and variables
@@ -11,6 +14,7 @@ int solPin[] = {2,3,4,5,6,7,8,9,10,11,12,13};	// Define solenoid output pins
 int chord[12];	// Array used to define the chord played by the function pulseChord()
 
 String stringOne = "carmen de la zou";
+String stringTweet = "";
 char charBuf[50];
 int delayTime;
 
@@ -27,35 +31,36 @@ int delayTime;
 void setup()
 {
 	setupSolPins();
+        Bridge.begin();
+        Serial.begin(9600);
+        while(!Serial);
 }
 
 void loop()
 {
-  
-    stringOne.toCharArray(charBuf, 50) ;
-    Serial.println(stringOne);
-    for (int i = 0; i < 14; i++) {
-       Serial.println(charBuf[i]);
-       go(charBuf[i]);
-       delay(300);
-    }
-    Serial.println();
-	//for(int i=0; i<3; i++)
-	//{
-		//pulseOne(i);
-		//delay(1000);
-                //Serial.println("moteur " + String(i) );
-	//}
+  HttpClient client;
+  client.get("http://mathemagie.net/projects/requiem/");
 
-	//setChord(1,0,1,0,1,0,1,0,1,0,1,0);
-	//pulseChord();
-        //delay(200);
-	//setChord(0,1,0,1,0,1,0,1,0,1,0,1);
-	//pulseChord();
-    delay(2000);
+  while (client.available()) {
+    char c = client.read();
+    stringTweet = stringTweet + c;
+
+  }
+  Serial.flush();
+  Serial.println(stringTweet);
+  
+  stringTweet.toCharArray(charBuf, 50) ;
+  for (int i = 0; i < stringTweet.length(); i++) {
+     Serial.println(charBuf[i]);
+     tradChar(charBuf[i]);
+     delay(500);
+  }
+  Serial.println();
+  delay(2000);
+  stringTweet = "";
 }
 
-void go(char c)                              // go function
+void tradChar(char c)                              // go function
 {
    setChord(0,0,0,0,0,0,0,0,0,0,0,0);
   switch(c)                                  // Switch to code based on c
@@ -189,6 +194,21 @@ void go(char c)                              // go function
       setChord(0,0,0,0,0,1,0,0,0,0,1,0);
       delayTime = 50; 
       Serial.println("z trouve");
+      break;
+    case ' ':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 1000; 
+      Serial.println("espace trouve");
+      break;
+     case '?':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 500; 
+      Serial.println("? trouve");
+      break;
+     case 'é':
+      setChord(1,1,1,0,0,0,0,0,0,0,0,0);
+      delayTime = 500; 
+      Serial.println("é trouve");
       break;
   }
   pulseChord();   // Joue l'accord de la lettre
