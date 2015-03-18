@@ -49,6 +49,7 @@ void loop()
   Serial.flush();
   Serial.println("========================");
   Serial.println(stringTweet);
+  //stringTweet = "T aurelien";//for test 
   
   stringTweet.toCharArray(charBuf, 50) ;
   for (int i = 0; i < stringTweet.length(); i++) {
