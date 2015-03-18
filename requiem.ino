@@ -47,6 +47,7 @@ void loop()
 
   }
   Serial.flush();
+  Serial.println("========================");
   Serial.println(stringTweet);
   
   stringTweet.toCharArray(charBuf, 50) ;
@@ -165,6 +166,11 @@ void tradChar(char c)                              // go function
       delayTime = 50; 
       Serial.println("t trouve");
       break;
+     case 'T':
+     setChord(0,0,0,1,0,1,0,0,1,0,0,0);
+      delayTime = 50; 
+      Serial.println("T trouve");
+      break;
      case 'u':
       setChord(0,0,0,0,1,0,0,0,0,1,0,0);
       delayTime = 50; 
@@ -195,20 +201,60 @@ void tradChar(char c)                              // go function
       delayTime = 50; 
       Serial.println("z trouve");
       break;
-    case ' ':
+     case ' ':
       setChord(0,0,0,0,0,0,0,0,0,0,0,0);
       delayTime = 1000; 
       Serial.println("espace trouve");
+      break;
+     case ':':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 1000; 
+      Serial.println(": trouve");
+      break;
+     case '!':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 1100; 
+      Serial.println("! trouve");
       break;
      case '?':
       setChord(0,0,0,0,0,0,0,0,0,0,0,0);
       delayTime = 500; 
       Serial.println("? trouve");
       break;
+     case '.':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 1500; 
+      Serial.println(". trouve");
+      break;
+     case ';':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 1000; 
+      Serial.println("; trouve");
+      break;
+     case ',':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 800; 
+      Serial.println("? trouve");
+      break;
+     case '/':
+      setChord(0,0,0,0,0,0,0,0,0,0,0,0);
+      delayTime = 700; 
+      Serial.println("/ trouve");
+      break;
+     case '@':
+      setChord(1,0,1,0,1,0,1,0,1,0,1,0);
+      delayTime = 50; 
+      Serial.println("@ trouve");
+      break;  
      case 'é':
       setChord(1,1,1,0,0,0,0,0,0,0,0,0);
       delayTime = 500; 
       Serial.println("é trouve");
+      break;
+     case 'è':
+      setChord(0,0,0,1,1,1,0,0,0,0,0,0);
+      delayTime = 500; 
+      Serial.println("è trouve");
       break;
   }
   pulseChord();   // Joue l'accord de la lettre
